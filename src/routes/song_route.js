@@ -26,4 +26,4 @@ const songRoute = (handler) => [
   },
 ];
 
-export default songRoute;
+module.exports = songRoute;

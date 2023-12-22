@@ -8,13 +8,12 @@ const successStatus = 'success';
 const failStatus = 'fail';
 const errorStatus = 'error';
 
-export default {
+module.exports = {
   successCode,
   createdCode,
   badRequestCode,
   notFoundCode,
   serverErrorCode,
-
   successStatus,
   failStatus,
   errorStatus,

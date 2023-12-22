@@ -3,4 +3,4 @@ function parseNumber(num) {
   return parseInt(num, 10);
 }
 
-export default parseNumber;
+module.exports = parseNumber;

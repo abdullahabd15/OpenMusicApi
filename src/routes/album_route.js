@@ -21,4 +21,4 @@ const albumRoutes = (handler) => [
   },
 ];
 
-export default albumRoutes;
+module.exports = albumRoutes;

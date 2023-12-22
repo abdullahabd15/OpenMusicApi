@@ -1,11 +1,11 @@
-import ClientError from './client_error.js';
-import consts from '../utils/consts.js';
+const ClientError = require('./client_error');
+const { notFoundCode } = require('../utils/consts');
 
-const { notFoundCode } = consts;
-
-export default class NotFoundError extends ClientError {
+class NotFoundError extends ClientError {
   constructor(message) {
     super(message, notFoundCode);
     this.name = 'NotFoundError';
   }
 }
+
+module.exports = NotFoundError;

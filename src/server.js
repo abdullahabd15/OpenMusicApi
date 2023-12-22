@@ -1,17 +1,14 @@
-import dotenv from 'dotenv';
-import Hapi from '@hapi/hapi';
-import AlbumService from './services/album_service.js';
-import SongService from './services/song_service.js';
-import ClientError from './exceptions/client_error.js';
-import albumPayloadValidator from './data/album_validator.js';
-import songPayloadValidator from './data/song_validator.js';
-import albumPlugin from './plugin/album_plugin.js';
-import songPlugin from './plugin/song_plugin.js';
-import consts from './utils/consts.js';
+require('dotenv').config();
+const Hapi = require('@hapi/hapi');
+const AlbumService = require('./services/album_service');
+const SongService = require('./services/song_service');
+const ClientError = require('./exceptions/client_error');
+const albumPayloadValidator = require('./data/album_validator');
+const songPayloadValidator = require('./data/song_validator');
+const albumPlugin = require('./plugin/album_plugin');
+const songPlugin = require('./plugin/song_plugin');
 
-const { serverErrorCode, failStatus, errorStatus } = consts;
-
-dotenv.config();
+const { serverErrorCode, failStatus, errorStatus } = require('./utils/consts');
 
 const init = async () => {
   const albumService = new AlbumService();

@@ -1,11 +1,8 @@
-import { nanoid } from 'nanoid';
-import pkg from 'pg';
-import mapper from '../utils/mapper.js';
-import NotFoundError from '../exceptions/not_found_error.js';
-import InvariantError from '../exceptions/invariant_error.js';
-
-const { Pool } = pkg;
-const { mapToAlbum } = mapper;
+const { nanoid } = require('nanoid');
+const { Pool } = require('pg');
+const NotFoundError = require('../exceptions/not_found_error');
+const InvariantError = require('../exceptions/invariant_error');
+const { mapToAlbum } = require('../utils/mapper');
 
 class AlbumService {
   constructor() {
@@ -31,7 +28,7 @@ class AlbumService {
 
   async getAlbumById(albumId) {
     const query = {
-      text: 'SELECT a.id, a.name, a.year, s.id song_id, s.title, s.performer FROM albums a LEFT JOIN song s ON s.album_id = a.id WHERE a.id = $1',
+      text: 'SELECT a.id, a.name, a.year, s.id song_id, s.title, s.performer FROM albums a LEFT JOIN songs s ON s.album_id = a.id WHERE a.id = $1',
       values: [albumId],
     };
     const result = await this._pool.query(query);
@@ -67,4 +64,4 @@ class AlbumService {
   }
 }
 
-export default AlbumService;
+module.exports = AlbumService;

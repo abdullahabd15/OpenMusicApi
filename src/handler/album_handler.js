@@ -1,9 +1,7 @@
-import autoBind from 'auto-bind';
-import consts from '../utils/consts.js';
+const autoBind = require('auto-bind');
+const { createdCode, successCode, successStatus } = require('../utils/consts');
 
-const { createdCode, successCode, successStatus } = consts;
-
-export default class AlbumHandler {
+class AlbumHandler {
   constructor(service, validator) {
     this._service = service;
     this._validator = validator;
@@ -70,3 +68,5 @@ export default class AlbumHandler {
     return response;
   }
 }
+
+module.exports = AlbumHandler;

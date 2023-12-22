@@ -1,11 +1,8 @@
-import { nanoid } from 'nanoid';
-import pkg from 'pg';
-import mapper from '../utils/mapper.js';
-import NotFoundError from '../exceptions/not_found_error.js';
-import InvariantError from '../exceptions/invariant_error.js';
-
-const { Pool } = pkg;
-const { mapToSong } = mapper;
+const { nanoid } = require('nanoid');
+const { Pool } = require('pg');
+const NotFoundError = require('../exceptions/not_found_error');
+const InvariantError = require('../exceptions/invariant_error');
+const { mapToSong } = require('../utils/mapper');
 
 class SongService {
   constructor() {
@@ -22,11 +19,13 @@ class SongService {
       values: [songId, title, year, genre, performer, duration, albumId],
     };
     const result = await this._pool.query(query);
-    const { id } = result.rows[0];
-    if (id !== songId) {
+
+    // const { id } = result.rows[0];
+    if (!result.rows[0].id) {
       throw new InvariantError('Failed to add song');
     }
-    return id;
+
+    return result.rows[0].id;
   }
 
   async getSongs({
@@ -87,4 +86,4 @@ class SongService {
   }
 }
 
-export default SongService;
+module.exports = SongService;

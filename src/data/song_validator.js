@@ -1,13 +1,13 @@
-import ClientError from '../exceptions/client_error.js';
-import songSchema from './song_schema.js';
+const InvariantError = require('../exceptions/invariant_error');
+const { songSchema } = require('./song_schema');
 
 const songPayloadValidator = {
   validateSong: (payload) => {
     const result = songSchema.validate(payload);
     if (result.error) {
-      throw new ClientError(result.error.message);
+      throw new InvariantError(result.error.message);
     }
   },
 };
 
-export default songPayloadValidator;
+module.exports = songPayloadValidator;

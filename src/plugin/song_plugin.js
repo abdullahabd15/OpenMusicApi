@@ -1,5 +1,5 @@
-import SongHandler from '../handler/song_handler.js';
-import songRoute from '../routes/song_route.js';
+const SongHandler = require('../handler/song_handler');
+const songRoute = require('../routes/song_route');
 
 const songPlugin = {
   name: 'song',
@@ -10,4 +10,4 @@ const songPlugin = {
   },
 };
 
-export default songPlugin;
+module.exports = songPlugin;

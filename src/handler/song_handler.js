@@ -1,9 +1,7 @@
-import autoBind from 'auto-bind';
-import consts from '../utils/consts.js';
+const autoBind = require('auto-bind');
+const { createdCode, successCode, successStatus } = require('../utils/consts');
 
-const { createdCode, successCode, successStatus } = consts;
-
-export default class SongHandler {
+class SongHandler {
   constructor(service, validator) {
     this._service = service;
     this._validator = validator;
@@ -83,3 +81,5 @@ export default class SongHandler {
     return response;
   }
 }
+
+module.exports = SongHandler;

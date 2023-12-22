@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import parseNumber from './parser.js';
+const parseNumber = require('./parser');
 
 const mapToAlbum = ({
   id,
@@ -35,4 +35,4 @@ const mapToSong = ({
   albumId: album_id,
 });
 
-export default { mapToAlbum, mapToSong };
+module.exports = { mapToAlbum, mapToSong };

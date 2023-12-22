@@ -1,11 +1,11 @@
-import consts from '../utils/consts.js';
+const { badRequestCode } = require('../utils/consts');
 
-const { badRequestCode } = consts;
-
-export default class ClientError extends Error {
+class ClientError extends Error {
   constructor(message, statusCode = badRequestCode) {
     super(message);
     this.statusCode = statusCode;
     this.name = 'ClientError';
   }
 }
+
+module.exports = ClientError;

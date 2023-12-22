@@ -1,5 +1,5 @@
-import AlbumHandler from '../handler/album_handler.js';
-import albumRoutes from '../routes/album_route.js';
+const AlbumHandler = require('../handler/album_handler');
+const albumRoutes = require('../routes/album_route');
 
 const albumPlugin = {
   name: 'album',
@@ -10,4 +10,4 @@ const albumPlugin = {
   },
 };
 
-export default albumPlugin;
+module.exports = albumPlugin;
