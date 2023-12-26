@@ -2,7 +2,6 @@ const { nanoid } = require('nanoid');
 const { Pool } = require('pg');
 const NotFoundError = require('../exceptions/not_found_error');
 const InvariantError = require('../exceptions/invariant_error');
-const { mapToSong } = require('../utils/mapper');
 
 class SongService {
   constructor() {
@@ -13,19 +12,16 @@ class SongService {
     title, year, genre, performer, duration, albumId,
   }) {
     const songId = `song-${nanoid(16)}`;
-
     const query = {
       text: 'INSERT INTO songs VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id',
       values: [songId, title, year, genre, performer, duration, albumId],
     };
     const result = await this._pool.query(query);
-
-    // const { id } = result.rows[0];
-    if (!result.rows[0].id) {
+    const { id } = result.rows[0];
+    if (!id) {
       throw new InvariantError('Failed to add song');
     }
-
-    return result.rows[0].id;
+    return id;
   }
 
   async getSongs({
@@ -43,7 +39,7 @@ class SongService {
       text: `SELECT id, title, performer FROM songs WHERE title ILIKE '%${_title}%' AND performer ILIKE '%${_performer}%'`,
     };
     const results = await this._pool.query(query);
-    return results.rows.map(mapToSong);
+    return results.rows;
   }
 
   async getSongById(songId) {
@@ -52,10 +48,10 @@ class SongService {
       values: [songId],
     };
     const result = await this._pool.query(query);
-    if (result.rows.length === 0) {
+    if (result.rowCount === 0) {
       throw new NotFoundError('Song not found');
     }
-    return result.rows.map(mapToSong)[0];
+    return result.rows[0];
   }
 
   async editSongById(
@@ -69,7 +65,7 @@ class SongService {
       values: [title, year, genre, performer, duration, albumId, songId],
     };
     const result = await this._pool.query(query);
-    if (result.rows.length === 0) {
+    if (result.rowCount === 0) {
       throw new NotFoundError('Failed to edit Song, Song not found');
     }
   }
@@ -80,7 +76,7 @@ class SongService {
       values: [songId],
     };
     const result = await this._pool.query(query);
-    if (result.rows.length === 0) {
+    if (result.rowCount === 0) {
       throw new NotFoundError('Failed to delete Song, Song not found');
     }
   }

@@ -2,7 +2,6 @@ const { nanoid } = require('nanoid');
 const { Pool } = require('pg');
 const NotFoundError = require('../exceptions/not_found_error');
 const InvariantError = require('../exceptions/invariant_error');
-const { mapToAlbum } = require('../utils/mapper');
 
 class AlbumService {
   constructor() {
@@ -32,10 +31,10 @@ class AlbumService {
       values: [albumId],
     };
     const result = await this._pool.query(query);
-    if (result.rows.length === 0) {
+    if (result.rowCount === 0) {
       throw new NotFoundError('Album not found');
     }
-    return result.rows.map(mapToAlbum);
+    return result.rows;
   }
 
   async editAlbumById(
@@ -47,7 +46,7 @@ class AlbumService {
       values: [name, year, albumId],
     };
     const result = await this._pool.query(query);
-    if (result.rows.length === 0) {
+    if (result.rowCount === 0) {
       throw new NotFoundError('Failed to edit Album, Album not found');
     }
   }
@@ -58,7 +57,7 @@ class AlbumService {
       values: [albumId],
     };
     const result = await this._pool.query(query);
-    if (result.rows.length === 0) {
+    if (result.rowCount === 0) {
       throw new NotFoundError('Failed to delete album, Album not found');
     }
   }
