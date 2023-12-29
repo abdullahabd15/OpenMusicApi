@@ -1,5 +1,7 @@
-exports.up = (pgm) => {
-  pgm.createTable('albums', {
+const albumsTable = 'albums';
+
+const up = (pgm) => {
+  pgm.createTable(albumsTable, {
     id: {
       type: 'VARCHAR(50)',
       primaryKey: true,
@@ -15,6 +17,8 @@ exports.up = (pgm) => {
   });
 };
 
-exports.down = (pgm) => {
-  pgm.dropTable('albums');
+const down = (pgm) => {
+  pgm.dropTable(albumsTable);
 };
+
+module.exports = { up, down, albumsTable };
