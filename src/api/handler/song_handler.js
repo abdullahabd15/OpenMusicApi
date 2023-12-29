@@ -1,5 +1,5 @@
 const autoBind = require('auto-bind');
-const { createdCode, successCode, successStatus } = require('../utils/consts');
+const { createdCode, successCode, successStatus } = require('../../utils/consts');
 
 class SongHandler {
   constructor(service, validator) {

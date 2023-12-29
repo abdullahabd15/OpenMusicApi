@@ -1,5 +1,5 @@
 const autoBind = require('auto-bind');
-const { createdCode, successCode, successStatus } = require('../utils/consts');
+const { createdCode, successCode, successStatus } = require('../../utils/consts');
 
 class AlbumHandler {
   constructor(service, validator) {

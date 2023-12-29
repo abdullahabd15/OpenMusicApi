@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const { yearSchema } = require('../utils/utils');
+const { yearSchema } = require('../../utils/utils');
 
 const songSchema = Joi.object({
   title: Joi.string().required(),
