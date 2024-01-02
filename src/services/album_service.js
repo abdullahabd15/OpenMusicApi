@@ -32,7 +32,7 @@ class AlbumService {
       values: [albumId],
     };
     const result = await this._pool.query(query);
-    if (result.rowCount === 0) {
+    if (!result.rowCount) {
       throw new NotFoundError('Album not found');
     }
     return result.rows;
@@ -47,7 +47,7 @@ class AlbumService {
       values: [name, year, albumId],
     };
     const result = await this._pool.query(query);
-    if (result.rowCount === 0) {
+    if (!result.rowCount) {
       throw new NotFoundError('Failed to edit Album, Album not found');
     }
   }
@@ -58,7 +58,7 @@ class AlbumService {
       values: [albumId],
     };
     const result = await this._pool.query(query);
-    if (result.rowCount === 0) {
+    if (!result.rowCount) {
       throw new NotFoundError('Failed to delete album, Album not found');
     }
   }

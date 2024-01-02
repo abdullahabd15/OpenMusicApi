@@ -15,7 +15,7 @@ class CollaborationsService {
       values: [collabId, playlistId, userId],
     };
     const result = await this._pool.query(query);
-    if (result.rowCount === 0) {
+    if (!result.rowCount) {
       throw new InvariantError('Failed to add Collaboration');
     }
     return result.rows[0].id;
@@ -27,7 +27,7 @@ class CollaborationsService {
       values: [playlistId, userId],
     };
     const result = await this._pool.query(query);
-    if (result.rowCount === 0) {
+    if (!result.rowCount) {
       throw new InvariantError('Failed to delete Collaboration');
     }
   }
@@ -38,7 +38,7 @@ class CollaborationsService {
       values: [playlistId, userId],
     };
     const result = await this._pool.query(query);
-    if (result.rowCount === 0) {
+    if (!result.rowCount) {
       throw new InvariantError('Failed to verify collaborator');
     }
   }

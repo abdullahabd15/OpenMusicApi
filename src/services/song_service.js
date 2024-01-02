@@ -49,7 +49,7 @@ class SongService {
       values: [songId],
     };
     const result = await this._pool.query(query);
-    if (result.rowCount === 0) {
+    if (!result.rowCount) {
       throw new NotFoundError('Song not found');
     }
     return result.rows[0];
@@ -66,7 +66,7 @@ class SongService {
       values: [title, year, genre, performer, duration, albumId, songId],
     };
     const result = await this._pool.query(query);
-    if (result.rowCount === 0) {
+    if (!result.rowCount) {
       throw new NotFoundError('Failed to edit Song, Song not found');
     }
   }
@@ -77,7 +77,7 @@ class SongService {
       values: [songId],
     };
     const result = await this._pool.query(query);
-    if (result.rowCount === 0) {
+    if (!result.rowCount) {
       throw new NotFoundError('Failed to delete Song, Song not found');
     }
   }

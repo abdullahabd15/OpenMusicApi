@@ -16,7 +16,7 @@ class PlaylistSongsService {
       values: [playlistSongsId, playlistId, songId],
     };
     const result = await this._pool.query(query);
-    if (result.rowCount === 0) {
+    if (!result.rowCount) {
       throw new InvariantError('Failed to add song to playlist');
     }
   }
@@ -38,7 +38,7 @@ class PlaylistSongsService {
       values: [playlistId, songId],
     };
     const result = await this._pool.query(query);
-    if (result.rowCount === 0) {
+    if (!result.rowCount) {
       throw new InvariantError('Failed to delete song from playlist');
     }
   }

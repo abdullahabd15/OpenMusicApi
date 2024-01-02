@@ -19,7 +19,7 @@ class PlaylistsService {
       values: [playlistId, name, owner],
     };
     const result = await this._pool.query(query);
-    if (result.rowCount === 0) {
+    if (!result.rowCount) {
       throw new InvariantError('Failed to add playlist');
     }
     return result.rows[0].id;
@@ -45,7 +45,7 @@ class PlaylistsService {
       values: [id],
     };
     const result = await this._pool.query(query);
-    if (result.rowCount === 0) {
+    if (!result.rowCount) {
       throw new NotFoundError('Playlist not found');
     }
     return result.rows[0];
@@ -57,7 +57,7 @@ class PlaylistsService {
       values: [id],
     };
     const result = await this._pool.query(query);
-    if (result.rowCount === 0) {
+    if (!result.rowCount) {
       throw new NotFoundError('Failed to delete playlist');
     }
   }
@@ -68,7 +68,7 @@ class PlaylistsService {
       values: [playlistId],
     };
     const result = await this._pool.query(query);
-    if (result.rowCount === 0) {
+    if (!result.rowCount) {
       throw new NotFoundError('Playlist not found');
     }
     const playlistOwner = result.rows[0].owner;
