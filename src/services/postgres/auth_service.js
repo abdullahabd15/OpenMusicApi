@@ -1,6 +1,6 @@
 const { Pool } = require('pg');
-const InvariantError = require('../exceptions/invariant_error');
-const { authTable } = require('../../migrations/1703577293172_create-table-authentications');
+const InvariantError = require('../../exceptions/invariant_error');
+const { authTable } = require('../../../migrations/1703577293172_create-table-authentications');
 
 class AuthenticationService {
   constructor() {

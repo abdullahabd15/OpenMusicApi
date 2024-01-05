@@ -1,10 +1,10 @@
 const { nanoid } = require('nanoid');
 const { Pool } = require('pg');
 const bcrypt = require('bcrypt');
-const InvariantError = require('../exceptions/invariant_error');
-const UnauthorizedError = require('../exceptions/unatuhorized_error');
-const { usersTable } = require('../../migrations/1703575916427_create-table-users');
-const NotFoundError = require('../exceptions/not_found_error');
+const InvariantError = require('../../exceptions/invariant_error');
+const UnauthorizedError = require('../../exceptions/unatuhorized_error');
+const { usersTable } = require('../../../migrations/1703575916427_create-table-users');
+const NotFoundError = require('../../exceptions/not_found_error');
 
 class UsersService {
   constructor() {

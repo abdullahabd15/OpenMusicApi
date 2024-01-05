@@ -1,2 +1,5 @@
 .env
 node_modules
+src/upload/file
+consumer/.env
+consumer/node_modules

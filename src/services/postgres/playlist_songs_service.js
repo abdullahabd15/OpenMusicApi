@@ -1,8 +1,8 @@
 const { nanoid } = require('nanoid');
 const { Pool } = require('pg');
-const { playlistSongsTable } = require('../../migrations/1703660264036_create-table-playlist-songs');
-const InvariantError = require('../exceptions/invariant_error');
-const { songsTable } = require('../../migrations/1703266316584_create-table-songs');
+const { playlistSongsTable } = require('../../../migrations/1703660264036_create-table-playlist-songs');
+const InvariantError = require('../../exceptions/invariant_error');
+const { songsTable } = require('../../../migrations/1703266316584_create-table-songs');
 
 class PlaylistSongsService {
   constructor() {

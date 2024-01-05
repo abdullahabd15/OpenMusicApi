@@ -1,11 +1,11 @@
 const { nanoid } = require('nanoid');
 const { Pool } = require('pg');
-const InvariantError = require('../exceptions/invariant_error');
-const { playlistTable } = require('../../migrations/1703577464396_create-table-playlists');
-const { usersTable } = require('../../migrations/1703575916427_create-table-users');
-const { collaborationsTable } = require('../../migrations/1703660524329_create-table-collaborations');
-const NotFoundError = require('../exceptions/not_found_error');
-const ForbiddenError = require('../exceptions/forbidden_error');
+const InvariantError = require('../../exceptions/invariant_error');
+const { playlistTable } = require('../../../migrations/1703577464396_create-table-playlists');
+const { usersTable } = require('../../../migrations/1703575916427_create-table-users');
+const { collaborationsTable } = require('../../../migrations/1703660524329_create-table-collaborations');
+const NotFoundError = require('../../exceptions/not_found_error');
+const ForbiddenError = require('../../exceptions/forbidden_error');
 
 class PlaylistsService {
   constructor() {

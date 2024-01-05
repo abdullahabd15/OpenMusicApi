@@ -1,9 +1,9 @@
 const { nanoid } = require('nanoid');
 const { Pool } = require('pg');
-const { playlistSongsActivitiesTable } = require('../../migrations/1703660504812_create-table-playlist-songs-activities');
-const InvariantError = require('../exceptions/invariant_error');
-const { usersTable } = require('../../migrations/1703575916427_create-table-users');
-const { songsTable } = require('../../migrations/1703266316584_create-table-songs');
+const { playlistSongsActivitiesTable } = require('../../../migrations/1703660504812_create-table-playlist-songs-activities');
+const InvariantError = require('../../exceptions/invariant_error');
+const { usersTable } = require('../../../migrations/1703575916427_create-table-users');
+const { songsTable } = require('../../../migrations/1703266316584_create-table-songs');
 
 class PlaylistActivityService {
   constructor() {

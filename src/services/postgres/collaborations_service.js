@@ -1,7 +1,7 @@
 const { nanoid } = require('nanoid');
 const { Pool } = require('pg');
-const { collaborationsTable } = require('../../migrations/1703660524329_create-table-collaborations');
-const InvariantError = require('../exceptions/invariant_error');
+const { collaborationsTable } = require('../../../migrations/1703660524329_create-table-collaborations');
+const InvariantError = require('../../exceptions/invariant_error');
 
 class CollaborationsService {
   constructor() {

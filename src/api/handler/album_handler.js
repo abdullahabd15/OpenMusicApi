@@ -2,8 +2,9 @@ const autoBind = require('auto-bind');
 const { createdCode, successCode, successStatus } = require('../../utils/consts');
 
 class AlbumHandler {
-  constructor(service, validator) {
+  constructor(service, storageService, validator) {
     this._service = service;
+    this._storageService = storageService;
     this._validator = validator;
 
     autoBind(this);
@@ -30,6 +31,7 @@ class AlbumHandler {
         album: {
           id: album[0].id,
           name: album[0].name,
+          coverUrl: album[0].coverUrl,
           year: album[0].year,
           songs: album.filter((e) => e.song_id !== null).map((a) => ({
             id: a.song_id,
@@ -63,6 +65,21 @@ class AlbumHandler {
       message: 'Album deleted successfully',
     });
     response.code(successCode);
+    return response;
+  }
+
+  async postAlbumCoverHandler(request, h) {
+    const { cover } = request.payload;
+    const { albumId } = request.params;
+    this._validator.validateAlbumCover(cover.hapi.headers);
+    const filename = await this._storageService.writeFile(cover, cover.hapi);
+    const fileUrl = `http://${process.env.HOST}:${process.env.PORT}/upload/images/${filename}`;
+    await this._service.addAlbumCover(albumId, fileUrl);
+    const response = h.response({
+      status: successStatus,
+      message: 'Cover album uploaded',
+    });
+    response.code(createdCode);
     return response;
   }
 }

@@ -1,8 +1,8 @@
 const { nanoid } = require('nanoid');
 const { Pool } = require('pg');
-const NotFoundError = require('../exceptions/not_found_error');
-const InvariantError = require('../exceptions/invariant_error');
-const { songsTable } = require('../../migrations/1703266316584_create-table-songs');
+const NotFoundError = require('../../exceptions/not_found_error');
+const InvariantError = require('../../exceptions/invariant_error');
+const { songsTable } = require('../../../migrations/1703266316584_create-table-songs');
 
 class SongService {
   constructor() {

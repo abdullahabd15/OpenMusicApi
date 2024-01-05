@@ -1,4 +1,4 @@
-const authTable = 'authenticatons';
+const authTable = 'authentications';
 
 const up = (pgm) => {
   pgm.createTable(authTable, {
